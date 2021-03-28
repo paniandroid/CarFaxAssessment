@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">CarFax</string>
+    <string name="call_dealer">CALL DEALER</string>
+    <string name="vehicle_info">Vehicle Info</string>
+    <string name="labels_vehicle_info">Location\n\nInterior color\n\nExterior color\n\nDrive type\n\nTransmision\n\nEngine\n\nBody style\n\nFuel</string>
+</resources>

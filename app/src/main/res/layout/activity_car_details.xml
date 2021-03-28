@@ -1,0 +1,138 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="carDetailsVM"
+            type="com.carfax.assignment.viewmodel.CarDetailsViewModel" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/item_car_details_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.carfax.assignment.view.CarDetailsActivity">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/card_background">
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:scaleType="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:imageUrl="@{carDetailsVM.thumbnail}" />
+
+            <TextView
+                android:id="@+id/label_year_make_model_trim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@+id/thumbnail"
+                tools:text='@{carDetailsVM.car.year + carDetailsVM.car.make +" "+ carDetailsVM.car.model +" "+ carDetailsVM.car.trim}' />
+
+            <TextView
+                android:id="@+id/label_price_mileage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_year_make_model_trim"
+                tools:text='@{"$ " +String.valueOf(carDetailsVM.car.currentPrice) +" | "+ carDetailsVM.car.mileage + "k mi"}' />
+
+            <View
+                android:id="@+id/border_light"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/light_gray"
+                app:layout_constraintTop_toBottomOf="@id/label_price_mileage" />
+
+            <TextView
+                android:id="@+id/label_vehicle_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vehicle_info"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="18sp"
+                android:layout_marginTop="28dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/border_light" />
+
+            <TextView
+                android:id="@+id/labels_vehicle_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:singleLine="false"
+                android:text="@string/labels_vehicle_info"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_vehicle_info" />
+
+            <TextView
+                android:id="@+id/vehicle_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/labels_vehicle_info"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_vehicle_info"
+                tools:text='@{carDetailsVM.car.dealer.address+"\n\n"+carDetailsVM.car.interiorColor+"\n\n"+carDetailsVM.car.exteriorColor+"\n\n"+carDetailsVM.car.drivetype+"\n\n"+carDetailsVM.car.transmission+"\n\n"+carDetailsVM.car.bodytype+"\n\n"+carDetailsVM.car.engine+"\n\n"+carDetailsVM.car.fuel}' />
+
+            <View
+                android:id="@+id/border_dark"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/labels_vehicle_info" />
+
+            <Button
+                android:id="@+id/btn_call_dealer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorPrimary"
+                android:onClick="@{() -> carDetailsVM.callDealer()}"
+                android:text="@string/call_dealer"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/border_dark" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</layout>
